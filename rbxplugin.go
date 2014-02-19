@@ -138,7 +138,7 @@ func main() {
 	parser := flags.NewParser(&opts, flags.PrintErrors)
 	parser.Parse()
 
-	if opts.Help {
+	if opts.Help || len(os.Args) <= 1 {
 		parser.WriteHelp(os.Stderr)
 		return
 	}
