@@ -403,18 +403,3 @@ func init() {
 		return nil
 	}
 }
-
-/*
-"	&quot;
-&	&amp;
-'	&apos;
-<	&lt;
->	&gt;
-
-\n
-\r
-
- !#$%()*+,-./0123456789:;=?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
-
-
-*/
