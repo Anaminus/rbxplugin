@@ -5,7 +5,7 @@ ROBLOX plugins.
 
 ## Usage
 
-rbxplugin as two available modes: **build** and **deploy**. Both modes may be
+rbxplugin has two available modes: **build** and **deploy**. Both modes may be
 activated at the same time.
 
 ### Build mode
