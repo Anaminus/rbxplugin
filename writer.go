@@ -184,6 +184,12 @@ func walk(path string, info os.FileInfo, parent *xmlx.Node, uncles *nodeMap, ref
 				return nil
 			}
 
+			nodes := doc.SelectNodes("", "Item")
+			if len(nodes) == 0 {
+				// Somehow, the model doesn't contain any objects.
+				return nil
+			}
+
 			// Remap referents of items in this file
 			refmap := make(map[string]string)
 			items := doc.SelectNodesRecursive("", "Item")
@@ -209,8 +215,7 @@ func walk(path string, info os.FileInfo, parent *xmlx.Node, uncles *nodeMap, ref
 			fixIndentation(items, indent)
 			fixIndentation(doc.SelectNodesRecursive("", "Properties"), indent)
 
-			// Move child node to new document
-			nodes := doc.SelectNodes("", "Item")
+			// Move each child node to new document
 			for _, node := range nodes {
 				parent.AddChildAt(leading(indent), -2)
 				parent.AddChildAt(node, -2)
@@ -218,9 +223,7 @@ func walk(path string, info os.FileInfo, parent *xmlx.Node, uncles *nodeMap, ref
 
 			// Since a model may have multiple nodes, only the first node will
 			// be paired with the model file.
-			if len(nodes) > 0 {
-				node = nodes[0]
-			}
+			node = nodes[0]
 		} else {
 			// convert anything else into disabled Script objects
 			item := Item{
