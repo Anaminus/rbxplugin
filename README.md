@@ -97,3 +97,12 @@ To create a new plugin, don't specify an asset id.
 The `--name` (`-n`) and `--description` (`-m`) options will specify the name
 and description of the plugin, respectively. These work both for creating or
 updating a plugin.
+
+## Installing
+
+[Install Go](http://golang.org/doc/install)
+
+Install rbxplugin:
+
+	go get github.com/anaminus/rbxplugin
+	go install github.com/anaminus/rbxplugin
