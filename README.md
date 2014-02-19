@@ -1,7 +1,7 @@
 # rbxplugin
 
 `rbxplugin` is a command-line tool for building and deploying
-[ROBLOX](http://www.roblox.com) plugins.
+ROBLOX plugins.
 
 ## Usage
 
