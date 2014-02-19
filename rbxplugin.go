@@ -138,7 +138,7 @@ func main() {
 	parser := flags.NewParser(&opts, flags.PrintErrors)
 	parser.Parse()
 
-	if opts.Help || len(os.Args) <= 1 {
+	if opts.Help {
 		parser.WriteHelp(os.Stderr)
 		return
 	}
@@ -149,7 +149,9 @@ func main() {
 		return
 	}
 
+	modeActive := false
 	if opts.Build {
+		modeActive = true
 		if opts.Output == "" {
 			assert(errors.New("Building requires an output file to be specified"))
 			return
@@ -165,12 +167,19 @@ func main() {
 	}
 
 	if opts.Create {
+		modeActive = true
 		err := Create(opts)
 		assert(err)
 	}
 
 	if opts.Deploy {
+		modeActive = true
 		err := Deploy(opts)
 		assert(err)
+	}
+
+	if !modeActive {
+		parser.WriteHelp(os.Stderr)
+		return
 	}
 }
