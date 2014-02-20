@@ -225,14 +225,12 @@ func walk(path string, info os.FileInfo, parent *xmlx.Node, uncles *nodeMap, ref
 			// be paired with the model file.
 			node = nodes[0]
 		} else {
-			// convert anything else into disabled Script objects
+			// convert anything else into StringValue objects
 			item := Item{
-				Class: "Script",
+				Class: "StringValue",
 				Properties: []Property{
-					{"bool", "Disabled", "true"},
-					{"Content", "LinkedSource", "null"},
 					{"string", "Name", base},
-					{"ProtectedString", "Source", "--[==[\n" + string(content) + "\n--]==]\n"},
+					{"string", "Value", string(content)},
 				},
 			}
 
