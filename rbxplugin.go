@@ -100,11 +100,11 @@ func Create(opts Opts, client *http.Client) (err error) {
 
 func Deploy(opts Opts) (err error) {
 	if opts.Username == "" {
-		return errors.New("Deployment requires a username to be specified")
+		return errors.New("Deployment requires --username option")
 	}
 
 	if opts.Password == "" {
-		return errors.New("Deployment requires a password to be specified")
+		return errors.New("Deployment requires --password option")
 	}
 
 	client := http.DefaultClient
@@ -139,7 +139,7 @@ func main() {
 
 	stat, err := os.Stat(opts.Input)
 	if err != nil || !stat.IsDir() {
-		assert(errors.New("Building requires an input directory to be specified"))
+		assert(errors.New("Input must be a valid directory"))
 		return
 	}
 
@@ -147,7 +147,7 @@ func main() {
 	if opts.Build {
 		modeActive = true
 		if opts.Output == "" {
-			assert(errors.New("Building requires an output file to be specified"))
+			assert(errors.New("Building requires --output option"))
 			return
 		}
 
