@@ -51,7 +51,7 @@ func Update(opts Opts, client *http.Client) (err error) {
 		"assetid": {strconv.FormatInt(opts.Asset, 10)},
 	}
 
-	_, err = asset.Upload(client, results, info)
+	_, _, err = asset.Upload(client, results, info)
 
 	if opts.Name != "" || opts.Description != "" {
 		params := url.Values{
@@ -94,7 +94,7 @@ func Create(opts Opts, client *http.Client) (err error) {
 		"allowComments": {"True"},
 	}
 
-	_, err = asset.Upload(client, results, info)
+	_, _, err = asset.Upload(client, results, info)
 	return err
 }
 
